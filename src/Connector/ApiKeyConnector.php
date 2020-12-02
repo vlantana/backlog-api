@@ -13,11 +13,11 @@ class ApiKeyConnector extends Connector
     /** @var string */
     protected $api_key;
 
-    public function __construct($space_id, $api_key, $domain = 'jp')
+    public function __construct($space_id, $api_key, $domain = 'jp', $request_options = [])
     {
         $this->client = new Client([
             'base_uri' => sprintf(self::API_URL, $space_id, $domain)
-        ]);
+        ] + $request_options);
 
         $this->api_key = $api_key;
     }
